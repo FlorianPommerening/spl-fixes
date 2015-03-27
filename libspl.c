@@ -320,23 +320,26 @@ void int_input(int line, CHARACTER *character)
   }
   
   /* Get a line of text */
-  fgets(buf, BUF_SIZE, stdin);
+  if (fgets(buf, BUF_SIZE, stdin) != NULL) {
 
-  /* Try to parse that into an integer */
-  errno = 0;
-  lval = strtol(buf, NULL, 10);
-  if (lval == 0) {
-    switch (errno) {
-    case EINVAL:
-      runtime_error(line, cat2(newstr(character->name), newstr("'s heart whispered something that was not a valid integer.")));
-      break;
-    case ERANGE:
-      runtime_error(line, cat2(newstr(character->name), newstr("'s heart whispered an integer that was out of range.")));
-      break;
-    default:
-      /* No error, buf really contained the integer zero */
-      break;
+    /* Try to parse that into an integer */
+    errno = 0;
+    lval = strtol(buf, NULL, 10);
+    if (lval == 0) {
+      switch (errno) {
+      case EINVAL:
+        runtime_error(line, cat2(newstr(character->name), newstr("'s heart whispered something that was not a valid integer.")));
+        break;
+      case ERANGE:
+        runtime_error(line, cat2(newstr(character->name), newstr("'s heart whispered an integer that was out of range.")));
+        break;
+      default:
+        /* No error, buf really contained the integer zero */
+        break;
+      }
     }
+  } else {
+    runtime_error(line, cat2(newstr(character->name), newstr("'s heart whispered nothing.")));
   }
 
   /* Make sure it was not out of range */
