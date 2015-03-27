@@ -9,4 +9,6 @@
 
 %option yylineno
 %option case-insensitive
+%option nounput
+%option noinput
 
