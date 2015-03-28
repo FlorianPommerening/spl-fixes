@@ -1,0 +1,23 @@
+syntax: glob
+examples/fibonacci
+examples/fibonacci2
+examples/guess
+examples/hello
+examples/primes
+examples/reverse
+examples/shakesbeer
+grammar.output
+grammar.tab.c
+grammar.tab.h
+grammar.tab.o
+libspl.a
+libspl.o
+makescanner
+makescanner.o
+scanner.c
+scanner.l
+scanner.o
+spl/bin/spl2c
+spl/include/spl.h
+spl2c
+strutils.o
